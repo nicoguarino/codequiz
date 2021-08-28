@@ -1,14 +1,14 @@
 var questions = [
     {
-        quizQ: "Inside wuich HTML element do we put the JavaScript",
+        quizQ: "Inside which HTML element do we put the JavaScript?",
 
-        optionA: "<js>",
+        optionA: "js",
 
-        optionB: "<script>",
+        optionB: "script",
 
-        optionC: "<scripted>",
+        optionC: "scripted",
 
-        optionD: "<javascript>"
+        optionD: "javascript"
 
         //b is correct
     },
@@ -28,13 +28,13 @@ var questions = [
     },
 
     {  
-        quizQ: "Where is the correct place to insert JavaScript",
+        quizQ: "Where is the correct place to insert JavaScript?",
 
-        optionA: "<footer> section",
+        optionA: "footer section",
 
-        optionB: "<head> section",
+        optionB: "head section",
 
-        optionC: "<body>",
+        optionC: "body",
 
         optionD: "Or any of the above?"
 
@@ -44,19 +44,19 @@ var questions = [
     {
         quizQ: "What is the correct way to call a js script?",
 
-        optionA: "<script img='script.js'>",
+        optionA: "'script img='script.js'",
 
-        optionB: "<script href='script.js'>",
+        optionB: "'script href='script.js''",
 
-        optionC: "<script alt='script.js'>",
+        optionC: "'script alt='script.js'",
 
-        optionD: "<script src='script.js'>"
+        optionD: "script src='script.js'"
 
         //d is correct
     },
 
     {
-        quizQ: "How do you write 'Hello world' in an alert box",
+        quizQ: "How do you write 'Hello world' in an alert box?",
 
         optionA: "prompt('Hello World!')",
 
@@ -128,7 +128,7 @@ var questions = [
     {
         quizQ: "How can you write a comment in JavaScript?",
 
-        optionA: "<!--comment--!>",
+        optionA: "!--comment--!",
 
         optionB: "//comment",
 
@@ -139,30 +139,51 @@ var questions = [
         //b is correct
     }
 ];
-
 var ranQue = "";
 var score = 0;
 var highScore = 0;
-var startBtn = document.querySelector("#start-btn");
+var seconds = 50;
+const startBtn = document.querySelector("#start-btn");
+const selectedQuestion = document.getElementById("quiz-question");
+const answerA = document.getElementById("btn-a");
+const answerB = document.getElementById("btn-b");
+const answerC = document.getElementById("btn-c");
+const answerD = document.getElementById("btn-d");
+const btnClick = document.getElementsByClassName("quiz-btn");
 
 
 
 // Funtion that randomly pulls from the quetions array
 function randomQuestion() {
     for (var i = 0; i < questions.length; i++) {
-        ranQue = quizQ[Math.floor(Math.random() * questions.length)];
-        console.log(ranQue);
+        ranQue = questions[Math.floor(Math.random() * questions.length)];
 
         return ranQue;
     }
+    return ranQue;
 };
 
+// function to load quiz questions
+function loadQuestions() {
+    
+    randomQuestion();
 
+    selectedQuestion.innerHTML = ranQue.quizQ;
+    answerA.innerHTML = ranQue.optionA;
+    answerB.innerHTML = ranQue.optionB;
+    answerC.innerHTML = ranQue.optionC;
+    answerD.innerHTML = ranQue.optionD;
+    console.log(ranQue);
+
+   answerA.addEventListener("click", loadQuestions);
+   answerB.addEventListener("click", loadQuestions);
+   answerC.addEventListener("click", loadQuestions);
+   answerD.addEventListener("click", loadQuestions);
+}
 
 
 // function for timer
 function timer() {
-    var seconds = 50;
 
     var timer = setInterval(function(){
 
@@ -172,17 +193,19 @@ function timer() {
 
         if ( seconds < 0) {
             clearInterval(timer);
+            
         }
-
     }, 1000)
 };
 
 // function to store score of user
 
+
 // fuction to start quiz on start button click
 function startQuiz() {
+
     timer();
-    randomQuestion();
+    loadQuestions();
 };
 
 // event listener to start quiz on click of start btn
