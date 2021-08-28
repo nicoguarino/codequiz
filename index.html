@@ -16,7 +16,7 @@
         
     <!--Timer that starts on click of start btn-->
     <div>
-        <button id="high-score" class="btn">High Scores</button>
+        <button id="high-score-btn" class="btn">High Scores</button>
     </div>
     <div id="quiz-timer">
 
@@ -27,19 +27,38 @@
 <main class="main-section">
     
     <!--Start button that is clicked and starts quiz and timer-->
-    <div class="start-screen">
+    <div id="start" class="div">
+        <h1>Code Quiz</h1>>
         <button id="start-btn" class="btn">Start</button>
     </div>
 
     <!--Quiz Div-->
-    <div class="quiz">
+    <div  id="quiz-div" class="quiz">
         <!--quiz question-->
-        <p id ="quiz-question" class="question"></p>
+        <p id ="quiz-question" class="div"></p>
         <!--quiz option selections-->
-        <button id= "btn-a" class="quiz-btn"></button>
-        <button id= "btn-b" class="quiz-btn"></button>
-        <button id= "btn-c" class="quiz-btn"></button>
-        <button id= "btn-d" class="quiz-btn"></button>
+        <button id= "btn-a" value="a" class="quiz-btn"></button>
+        <button id= "btn-b" value="b" class="quiz-btn"></button>
+        <button id= "btn-c" value="c" class="quiz-btn"></button>
+        <button id= "btn-d" value= "d" class="quiz-btn"></button>
+    </div>
+
+
+    <div id="high-score-page" class="div">
+        <!--how to link input to list-->
+        <div id="user-name" class="div">
+            <form>
+            Enter Your name: <input id="user-name" placeholder="Your Name"></input>
+         </form>
+            <button>Submit</button>
+        </div>
+
+        <ol>
+            <!--how to get correct score into ordered list-->
+            <li id="user-score"></li>
+            <li></li>
+            <li></li>
+        </ol>
     </div>
 
 

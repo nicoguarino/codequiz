@@ -8,7 +8,9 @@ var questions = [
 
         optionC: "scripted",
 
-        optionD: "javascript"
+        optionD: "javascript",
+
+        correctAnswer: "b"
 
         //b is correct
     },
@@ -22,7 +24,9 @@ var questions = [
 
         optionC: "getElementIdBy('id = demo')",
 
-        optionD: "getid('demo')"
+        optionD: "getid('demo')",
+
+        correctAnswer: "a"
 
         //a is correct
     },
@@ -36,7 +40,9 @@ var questions = [
 
         optionC: "body",
 
-        optionD: "Or any of the above?"
+        optionD: "Or any of the above?",
+        
+        correctAnswer: "c"
 
         //c is correct
     },
@@ -50,7 +56,9 @@ var questions = [
 
         optionC: "'script alt='script.js'",
 
-        optionD: "script src='script.js'"
+        optionD: "script src='script.js'",
+
+        correctAnswer: "d"
 
         //d is correct
     },
@@ -64,7 +72,9 @@ var questions = [
 
         optionC: "alert('Hello World!')",
 
-        optionD: "window('Hello World!')"
+        optionD: "window('Hello World!')",
+        
+        correctAnswer: "c"
 
         //c is correct
     },
@@ -78,7 +88,9 @@ var questions = [
 
         optionC: "var afunction = function() {}",
 
-        optionD: "Both option b and c"
+        optionD: "Both option b and c",
+
+        correctAnswer: "d"
 
         //d is correct
     },
@@ -92,7 +104,9 @@ var questions = [
 
         optionC: "call afunction;",
 
-        optionD: "afunction;"
+        optionD: "afunction;",
+        
+        correctAnswer: "b"
 
         //b is correct
     },
@@ -106,9 +120,9 @@ var questions = [
 
         optionC: "if[]{}",
 
-        optionD: "if(){}"
+        optionD: "if(){}",
 
-        //d is correct
+        correctAnswer: "d"
     },
 
     {
@@ -120,7 +134,9 @@ var questions = [
 
         optionC: "for (i++; i = 0; i = 0){}",
 
-        optionD: "for (i = 0; i = 12; i)"
+        optionD: "for (i = 0; i = 12; i)",
+
+        correctAnswer: "a"
 
         //a is correct
     },
@@ -134,15 +150,32 @@ var questions = [
 
         optionC: "[comment]",
 
-        optionD: "comment = 'a comment'"
+        optionD: "comment = 'a comment'",
+
+        correctAnswer: "b"
 
         //b is correct
+    },
+
+    {
+        
+        quizQ: "This is dumb",
+
+        optionA: "this is really dumb",
+
+        optionB: "I second that",
+
+        optionC: "Doesn't make sense",
+
+        optionD: "HELP",
+
+        correctAnswer: "d"
+
     }
 ];
-var ranQue = "";
-var score = 0;
-var highScore = 0;
 var seconds = 50;
+var playerName= "";
+var currentQuestion = 0;
 const startBtn = document.querySelector("#start-btn");
 const selectedQuestion = document.getElementById("quiz-question");
 const answerA = document.getElementById("btn-a");
@@ -150,65 +183,111 @@ const answerB = document.getElementById("btn-b");
 const answerC = document.getElementById("btn-c");
 const answerD = document.getElementById("btn-d");
 const btnClick = document.getElementsByClassName("quiz-btn");
+const homepage = document.getElementById("start");
+const quizSection = document.getElementById("quiz-div");
+const highScorePage = document.getElementById("high-score-page");
+const userScore = document.getElementById("user-score");
+const userName = document.getElementById("user-name");
+const highScoreButton = document.getElementById("high-score-btn");
 
+// Funtion that checks for right answer
+ function checkAnswer(e) {
+    if(e.target.value !== questions[currentQuestion].correctAnswer){  
+        seconds -= 5;
+    } 
 
+    if (currentQuestion <= 9) {
+    currentQuestion++;
+    selectedQuestion.innerHTML = questions[currentQuestion].quizQ;
+    answerA.innerHTML = questions[currentQuestion].optionA;
+    answerB.innerHTML = questions[currentQuestion].optionB;
+    answerC.innerHTML = questions[currentQuestion].optionC;
+    answerD.innerHTML = questions[currentQuestion].optionD;
 
-// Funtion that randomly pulls from the quetions array
-function randomQuestion() {
-    for (var i = 0; i < questions.length; i++) {
-        ranQue = questions[Math.floor(Math.random() * questions.length)];
-
-        return ranQue;
-    }
-    return ranQue;
+    } else {
+        stopGame();
+     }
 };
 
-// function to load quiz questions
+// function to load quiz questions and starts the for loop
 function loadQuestions() {
-    
-    randomQuestion();
+    quizSection.style.display = "unset";
 
-    selectedQuestion.innerHTML = ranQue.quizQ;
-    answerA.innerHTML = ranQue.optionA;
-    answerB.innerHTML = ranQue.optionB;
-    answerC.innerHTML = ranQue.optionC;
-    answerD.innerHTML = ranQue.optionD;
-    console.log(ranQue);
+    if ( currentQuestion <= 9) {
 
-   answerA.addEventListener("click", loadQuestions);
-   answerB.addEventListener("click", loadQuestions);
-   answerC.addEventListener("click", loadQuestions);
-   answerD.addEventListener("click", loadQuestions);
-}
+        selectedQuestion.innerHTML = questions[currentQuestion].quizQ;
+        answerA.innerHTML = questions[currentQuestion].optionA;
+        answerB.innerHTML = questions[currentQuestion].optionB;
+        answerC.innerHTML = questions[currentQuestion].optionC;
+        answerD.innerHTML = questions[currentQuestion].optionD;
+        
+        answerA.addEventListener("click", checkAnswer);
+        answerB.addEventListener("click", checkAnswer);
+        answerC.addEventListener("click", checkAnswer);
+        answerD.addEventListener("click", checkAnswer);
 
+     } else {
+        stopGame();
+     }
+};
 
 // function for timer
-function timer() {
+var clockTimer;   
+const timeClock = document.getElementById("quiz-timer-display");
 
-    var timer = setInterval(function(){
+function timeLeft() {
+    
+    timeClock.innerHTML = seconds + " seconds";
 
-        document.getElementById("quiz-timer-display").innerHTML = seconds + " seconds";
+    seconds--;
 
-        seconds--;
-
-        if ( seconds < 0) {
-            clearInterval(timer);
-            
-        }
-    }, 1000)
+    if ( seconds === 0) {
+        clearInterval(clockTimer);
+        stopGame();   
+    }
 };
 
-// function to store score of user
+//Do not know why it won't appear if we try to do local storage.
+//player name function
+function nameFunction(){
+    
+    localStorage.setItem("name", playerName);
+    var localname = localStorage.getItem("name");
+    userName.innerHTML = localname;
+};
 
+// function to stop
+function stopGame() {
+    
+    clearInterval(clockTimer);
+    localStorage.setItem("score", seconds.toString());
+    var localScore = localStorage.getItem("score");
+    userScore.innerHTML = localScore;
+
+
+    highScorePage.style.display = "unset";
+    quizSection.style.display = "none";
+    
+    //nameFunction();
+    // localStorage.setItem("name", playerName);
+    // var localname = localStorage.getItem("name");
+    // userName.innerHTML = localname;
+};
 
 // fuction to start quiz on start button click
-function startQuiz() {
-
-    timer();
+function startQuiz() {  
+    homepage.style.display = "none";
+    clockTimer = setInterval(timeLeft, 1000);
     loadQuestions();
 };
 
 // event listener to start quiz on click of start btn
+quizSection.style.display = "none";
+highScorePage.style.display = "none";
 startBtn.addEventListener("click", startQuiz);
 
-
+highScoreButton.addEventListener("click", function(){
+    quizSection.style.display = "none";
+    homepage.style.display = "none";
+    highScorePage.style.display = "unset";
+});
