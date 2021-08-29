@@ -1,0 +1,40 @@
+body {
+    font-size: 22px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgb(174, 106, 238);
+}
+button {
+    font-size: 18px;
+}
+
+button:hover {
+    opacity: .7;
+    background-color: gray;
+}
+
+.div  {
+    text-align: center;
+}
+
+.quiz {
+    position: relative;
+    text-align: center;
+}
+
+.div ol li {
+    margin: auto;
+    text-align: left; 
+}
+
+.quiz-btn {
+    position: relative;
+    justify-items: center;
+}
+
+#quiz-div .question-buttons {
+    margin: auto;
+}
+
+
+
+

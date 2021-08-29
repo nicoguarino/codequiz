@@ -37,10 +37,12 @@
         <!--quiz question-->
         <p id ="quiz-question" class="div"></p>
         <!--quiz option selections-->
-        <button id= "btn-a" value="a" class="quiz-btn"></button>
-        <button id= "btn-b" value="b" class="quiz-btn"></button>
-        <button id= "btn-c" value="c" class="quiz-btn"></button>
-        <button id= "btn-d" value= "d" class="quiz-btn"></button>
+        <div class="question-buttons">
+            <button id= "btn-a" value="a" class="quiz-btn"></button>
+            <button id= "btn-b" value="b" class="quiz-btn"></button>
+            <button id= "btn-c" value="c" class="quiz-btn"></button>
+            <button id= "btn-d" value= "d" class="quiz-btn"></button>
+        </div>
     </div>
 
 
@@ -48,17 +50,19 @@
         <!--how to link input to list-->
         <div id="user-name" class="div">
             <form>
-            Enter Your name: <input id="user-name" placeholder="Your Name"></input>
+            Enter Your name: <input id="entered-name" placeholder="Your Name"></input>
          </form>
-            <button>Submit</button>
+            <button id="submit-btn">Submit</button>
         </div>
 
-        <ol>
-            <!--how to get correct score into ordered list-->
-            <li id="user-score"></li>
-            <li></li>
-            <li></li>
-        </ol>
+        <div class="div">
+            <ol>
+                <!--how to get correct score into ordered list-->
+                <li id="user-score"><p id="name"></p></li>
+                <li></li>
+                <li></li>
+            </ol>
+        </div>
     </div>
 
 

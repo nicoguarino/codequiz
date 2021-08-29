@@ -174,8 +174,9 @@ var questions = [
     }
 ];
 var seconds = 50;
-var playerName= "";
 var currentQuestion = 0;
+var localScore = "";
+var localName = "";
 const startBtn = document.querySelector("#start-btn");
 const selectedQuestion = document.getElementById("quiz-question");
 const answerA = document.getElementById("btn-a");
@@ -187,8 +188,11 @@ const homepage = document.getElementById("start");
 const quizSection = document.getElementById("quiz-div");
 const highScorePage = document.getElementById("high-score-page");
 const userScore = document.getElementById("user-score");
-const userName = document.getElementById("user-name");
+const userName = document.getElementById("name");
+const playerName= document.querySelector("input").value;
 const highScoreButton = document.getElementById("high-score-btn");
+const submitButton = document.getElementById("submit-btn");
+const inputNameDiv = document.getElementById("user-name");
 
 // Funtion that checks for right answer
  function checkAnswer(e) {
@@ -251,27 +255,30 @@ function timeLeft() {
 //player name function
 function nameFunction(){
     
-    localStorage.setItem("name", playerName);
-    var localname = localStorage.getItem("name");
-    userName.innerHTML = localname;
+    localName = localStorage.getItem("name");
+    userName.innerHTML = localName;
+    
+};
+
+function highScore(){
+    
+    localScore = localStorage.getItem("score");
+    userScore.innerHTML = localScore;
 };
 
 // function to stop
 function stopGame() {
     
-    clearInterval(clockTimer);
-    localStorage.setItem("score", seconds.toString());
-    var localScore = localStorage.getItem("score");
-    userScore.innerHTML = localScore;
-
-
     highScorePage.style.display = "unset";
     quizSection.style.display = "none";
+
+    clearInterval(clockTimer);
+
+    localStorage.setItem("score", seconds.toString());
+    localStorage.setItem("name", playerName);
     
-    //nameFunction();
-    // localStorage.setItem("name", playerName);
-    // var localname = localStorage.getItem("name");
-    // userName.innerHTML = localname;
+    highScore();
+    nameFunction();
 };
 
 // fuction to start quiz on start button click
@@ -290,4 +297,9 @@ highScoreButton.addEventListener("click", function(){
     quizSection.style.display = "none";
     homepage.style.display = "none";
     highScorePage.style.display = "unset";
+    inputNameDiv.style.display = "none";
+
+    nameFunction();
+    highScore();
+    
 });
