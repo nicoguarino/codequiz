@@ -15,7 +15,7 @@ Code quiz is used to challenge your basic JavaScript knowledge. Test yourself ag
 
 ## Getting Started <a name = "getting-started"></a>
 
-* [Git Hub Pull](https://github.com/nicoguarino/portfolio.git)
+* [Git Hub Pull](https://github.com/nicoguarino/codequiz.git)
 * [Code Quiz Website](https://nicoguarino.github.io/codequiz/)
 
 ## Code Sample <a name = "code-sample"></a>
