@@ -20,7 +20,7 @@ Code quiz is used to challenge your basic JavaScript knowledge. Test yourself ag
 
 ## Code Sample <a name = "code-sample"></a>
 
-![Sample Code](https://github.com/nicoguarino/passwordgenerator/blob/main/assets/images/code_sample_image.png?raw=true "Sample Code")
+![Sample Code](https://github.com/nicoguarino/codequiz/blob/main/assets/image/code_sampel.png "Sample Code")
 
 ### Sample Code
 ```HTML Sample
